@@ -1,10 +1,14 @@
 <script setup>
+import { ref } from 'vue'
+
 const { swatches } = defineProps({
   swatches: {
     type: Array,
     required: true,
   },
 })
+
+const activeSwatch = ref(0)
 </script>
 
 <template>
@@ -14,8 +18,9 @@ const { swatches } = defineProps({
         <li
           v-for="(swatch, index) in swatches"
           :key="index"
-          class="swatch"
           :style="{ background: `#${swatch}` }"
+          class="swatch"
+          :class="{ active: index === activeSwatch }"
         ></li>
       </ul>
     </div>

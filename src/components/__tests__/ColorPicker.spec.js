@@ -26,5 +26,9 @@ describe('ColorPicker', () => {
         )
       })
     })
+    it('sets the first swatch as the selected one by default', () => {
+      const firstSwatch = wrapper.findAll('.swatch').at(0)
+      expect(firstSwatch.classes()).toContain('active')
+    })
   })
 })
