@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+const { swatches } = defineProps({
   swatches: {
     type: Array,
     required: true,
