@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import Checkmark from '@/assets/checkmark.svg'
 
 const { swatches } = defineProps({
@@ -12,6 +12,11 @@ const { swatches } = defineProps({
 const activeSwatch = ref(0)
 const colorModes = ref(['hex', 'rgb', 'hsl'])
 const activeMode = ref(0)
+
+const activeColorCode = computed(() => {
+  const swatch = swatches[activeSwatch.value]
+  return `#${swatch}`
+})
 </script>
 
 <template>
@@ -35,10 +40,15 @@ const activeMode = ref(0)
       v-for="(mode, index) in colorModes"
       :key="index"
       class="color-mode"
-      :class="[`color-mode-${mode}`, { active: index === activeMode }]"
+      :class="[{ active: index === activeMode }, `color-mode-${mode}`]"
+      @click="activeMode = index"
     >
       {{ mode }}
     </button>
+  </div>
+
+  <div class="color-code">
+    {{ activeColorCode }}
   </div>
 </template>
 
