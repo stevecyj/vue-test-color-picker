@@ -64,5 +64,11 @@ describe('ColorPicker', () => {
       await wrapper.find('.color-mode-hsl').trigger('click')
       expect(wrapper.find('.color-code').text()).toEqual('2°, 76%, 54%')
     })
+
+    it('displays the code in the right color when changing color', async () => {
+      await wrapper.findAll('.swatch').at(2).trigger('click')
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.color-code').text()).toEqual(`#${propsData.swatches[2]}`)
+    })
   })
 })

@@ -42,6 +42,7 @@ const activeModeValue = computed(() => {
           :style="{ background: `#${swatch}` }"
           class="swatch"
           :class="{ active: index === activeSwatch }"
+          @click="activeSwatch = index"
         >
           <Checkmark />
         </li>
