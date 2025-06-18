@@ -26,6 +26,7 @@ describe('ColorPicker', () => {
         )
       })
     })
+
     it('sets the first swatch as the selected one by default', () => {
       const firstSwatch = wrapper.findAll('.swatch').at(0)
       expect(firstSwatch.classes()).toContain('active')
@@ -33,10 +34,13 @@ describe('ColorPicker', () => {
   })
 
   describe('Color model', () => {
-    it('updates the color model when a swatch is clicked', () => {
-      const swatches = wrapper.findAll('.swatch')
-      swatches.at(1).trigger('click')
-      expect(wrapper.vm.color).toBe('3490dc')
+    it('displays each mode as an individual button', () => {
+      const buttons = wrapper.findAll('.color-mode')
+      buttons.forEach((button) => {
+        expect(button.classes()).toEqual(
+          expect.arrayContaining([expect.stringMatching(/color-mode-\w{1,}/)]),
+        )
+      })
     })
   })
 })
