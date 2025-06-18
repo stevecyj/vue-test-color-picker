@@ -1,7 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue'
-import convert from 'color-convert'
 import Checkmark from '@/assets/checkmark.svg'
+import { rgb, hex, hsl } from '@/utils/color'
+
+const modes = { hex, rgb, hsl }
 
 const { swatches } = defineProps({
   swatches: {
@@ -16,16 +18,7 @@ const activeMode = ref(0)
 
 const activeCode = computed(() => {
   const mode = activeModeValue.value
-  switch (mode) {
-    case 'hex':
-      return hex.value
-    case 'rgb':
-      return rgb.value
-    case 'hsl':
-      return hsl.value
-    default:
-      return hex.value
-  }
+  return modes[mode](activeColorValue.value)
 })
 
 const activeColorValue = computed(() => {
@@ -36,20 +29,6 @@ const activeColorValue = computed(() => {
 const activeModeValue = computed(() => {
   const mode = colorModes.value[activeMode.value]
   return mode
-})
-
-const hex = computed(() => {
-  return `#${activeColorValue.value}`
-})
-
-const rgb = computed(() => {
-  const rgbColor = convert.hex.rgb(activeColorValue.value)
-  return `${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}`
-})
-
-const hsl = computed(() => {
-  const hslColor = convert.hex.hsl(activeColorValue.value)
-  return `${hslColor[0]}°, ${hslColor[1]}%, ${hslColor[2]}%`
 })
 </script>
 
