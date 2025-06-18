@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import Checkmark from '@/assets/checkmark.svg'
 
 const { swatches } = defineProps({
   swatches: {
@@ -21,7 +22,9 @@ const activeSwatch = ref(0)
           :style="{ background: `#${swatch}` }"
           class="swatch"
           :class="{ active: index === activeSwatch }"
-        ></li>
+        >
+          <Checkmark />
+        </li>
       </ul>
     </div>
   </div>

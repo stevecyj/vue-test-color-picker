@@ -31,4 +31,12 @@ describe('ColorPicker', () => {
       expect(firstSwatch.classes()).toContain('active')
     })
   })
+
+  describe('Color model', () => {
+    it('updates the color model when a swatch is clicked', () => {
+      const swatches = wrapper.findAll('.swatch')
+      swatches.at(1).trigger('click')
+      expect(wrapper.vm.color).toBe('3490dc')
+    })
+  })
 })
