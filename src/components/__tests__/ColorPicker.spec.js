@@ -59,5 +59,10 @@ describe('ColorPicker', () => {
     it('displays the default swatch in the default mode', () => {
       expect(wrapper.find('.color-code').text()).toEqual(`#${propsData.swatches[0]}`)
     })
+
+    it('displays the code in the right mode when changing mode', async () => {
+      await wrapper.find('.color-mode-hsl').trigger('click')
+      expect(wrapper.find('.color-code').text()).toEqual('2°, 76%, 54%')
+    })
   })
 })
